@@ -103,10 +103,22 @@ public class Espetaculo {
 		// ALUNO: Não apague esse metodo. Esse sim será usado no futuro! ;)
 		List<Sessao> sessoes = new ArrayList<Sessao>();
 		
-		Sessao sessao = new Sessao();
-		sessao.setInicio(inicio.toDateTime(horario));
-		
-		sessoes.add(sessao);
+		int quantSessoes = 0;
+		if(periodicidade.equals(Periodicidade.DIARIA)) {
+			quantSessoes = Days.daysBetween(inicio, fim).getDays() + 1;
+			for(int i = 0; i < quantSessoes; i++) {
+				Sessao sessao = new Sessao();
+				sessao.setInicio(inicio.plusDays(i).toDateTime(horario));
+				sessoes.add(sessao);
+			}
+		} else {
+			quantSessoes = Weeks.weeksBetween(inicio, fim).getWeeks() + 1;
+			for(int i = 0; i < quantSessoes; i++) {
+				Sessao sessao = new Sessao();
+				sessao.setInicio(inicio.plusWeeks(i).toDateTime(horario));
+				sessoes.add(sessao);
+			}
+		}
 		return sessoes;
 	}
 	
