@@ -128,15 +128,26 @@ public class EspetaculoTest {
 	}
 	
 	@Test
-	public void DeveCriarSessoesComDataCorretaDiario() {
+	public void DeveCriarSessoesComDataCorretaSemanal() {
 		Espetaculo espetaculo = new Espetaculo();
-		List<Sessao> sessoes = espetaculo.criaSessoes(new LocalDate(2015, 03, 20),
-				new LocalDate(2015, 03, 22), new LocalTime(20, 00), Periodicidade.DIARIA);
+		List<Sessao> sessoes = espetaculo.criaSessoes(new LocalDate(2015, 03, 2),
+				new LocalDate(2015, 03, 22), new LocalTime(20, 00), Periodicidade.SEMANAL);
 				
-		assertTrue(sessoes.get(0).getDia().equals("20/03/15"));
-		assertTrue(sessoes.get(1).getDia().equals("21/03/15"));
-		assertTrue(sessoes.get(2).getDia().equals("22/03/15"));
+		assertTrue(sessoes.get(0).getDia().equals("02/03/15"));
+		assertTrue(sessoes.get(1).getDia().equals("09/03/15"));
+		assertTrue(sessoes.get(2).getDia().equals("16/03/15"));
 		
+	}
+	
+	@Test
+	public void SessaoDeveTerEspetaculo() {
+		Espetaculo espetaculo = new Espetaculo();
+		List<Sessao> sessoes = espetaculo.criaSessoes(new LocalDate(2015, 03, 2),
+				new LocalDate(2015, 03, 22), new LocalTime(20, 00), Periodicidade.SEMANAL);
+		
+		for (Sessao sessao : sessoes) {
+			assertFalse(sessao.getEspetaculo() == null);
+		}
 	}
 	
 }

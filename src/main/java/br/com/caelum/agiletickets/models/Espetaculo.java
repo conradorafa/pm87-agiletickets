@@ -109,6 +109,7 @@ public class Espetaculo {
 			for(int i = 0; i < quantSessoes; i++) {
 				Sessao sessao = new Sessao();
 				sessao.setInicio(inicio.plusDays(i).toDateTime(horario));
+				sessao.setEspetaculo(this);
 				sessoes.add(sessao);
 			}
 		} else {
@@ -116,6 +117,7 @@ public class Espetaculo {
 			for(int i = 0; i < quantSessoes; i++) {
 				Sessao sessao = new Sessao();
 				sessao.setInicio(inicio.plusWeeks(i).toDateTime(horario));
+				sessao.setEspetaculo(this);
 				sessoes.add(sessao);
 			}
 		}
