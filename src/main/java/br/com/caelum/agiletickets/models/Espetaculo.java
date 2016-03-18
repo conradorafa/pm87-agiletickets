@@ -121,7 +121,6 @@ public class Espetaculo {
 				sessoes.add(sessao);
 			}
 		}
-		sessoes = null;
 		return sessoes;
 	}
 	
